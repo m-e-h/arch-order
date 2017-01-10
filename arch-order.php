@@ -252,7 +252,7 @@ final class Arch_Order {
 
 
 
-		<div id="app" class="wrap">
+		<div id="app" class="arch-wrap">
 			<h1>Post Table</h1>
 			<div id="app" class="o-grid p-minus">
 				<template v-for="post in posts">

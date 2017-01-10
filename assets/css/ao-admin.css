@@ -2,6 +2,11 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Liberation Sans", "Helvetica Neue", sans-serif;
 }
 
+.arch-wrap {
+    max-width: 100%;
+    overflow: hidden;
+}
+
 .o-grid {
 	display: flex;
 	flex-wrap: wrap;
