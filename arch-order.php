@@ -135,7 +135,6 @@ final class Arch_Order {
 	* @return void
 	*/
 	public function hooks() {
-		// Priority needs to be:
 		register_activation_hook( __FILE__, array( $this, '_activate' ) );
 		register_deactivation_hook( __FILE__, array( $this, '_deactivate' ) );
 
@@ -189,7 +188,7 @@ final class Arch_Order {
 			esc_html__( 'Arch Order', 'ao' ),
 			esc_html__( 'Arch Order', 'ao' ),
 			'manage_options',
-			'cpt-generator',
+			'arch-order',
 			array( $this, 'arch_page' )
 		);
 	}
@@ -247,12 +246,12 @@ final class Arch_Order {
 
 
 
-		<div id="demo">
+		<div id="app">
 			<h1>Latest Vue.js Commits</h1>
 			<template v-for="post in posts">
-								<div class="post-content">
-									<h2>{{ post.slug }}</h2>
-								</div>
+				<div class="post-content">
+					<h2>{{post.title.rendered}}</h2>
+				</div>
 			</template>
 		</div>
 
