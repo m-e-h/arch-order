@@ -3,34 +3,34 @@ var vm = new Vue({
 	el: '#app',
 
 	data: {
-		posts: '',
-		slug: null
+		posts: [],
+		thumb_med: null
 	},
 
-	created: function () {
-		this.fetchData()
+	mounted: function() {
+		this.fetchPosts()
 	},
 
 	watch: {
-		'$route': function () {
+		'$route': function() {
 			var self = this
 			self.isLoading = true
-			self.fetchData().then(function () {
+			self.fetchPosts().then(function() {
 				self.isLoading = false
 			})
 		}
 	},
 
 	methods: {
-		fetchData: function () {
+		fetchPosts: function() {
 			var self = this
-			return axios.get('/wp-json/wp/v2/posts?per_page=20')
-			.then(function (response) {
-				self.posts = response
-			})
-			.catch(function (error) {
-				self.fetchError = error
-			})
+			axios.get('/wp-json/wp/v2/posts?per_page=20')
+				.then(function(response) {
+					vm.posts = response.data
+				})
+				.catch(function(error) {
+					self.fetchError = error
+				})
 		}
 	}
-})
+});

@@ -126,6 +126,7 @@ final class Arch_Order {
 	*/
 	private function includes() {
 		require_once $this->dir_path . 'inc/post-types.php';
+		require_once $this->dir_path . 'inc/functions.php';
 	}
 
 	/**
@@ -183,7 +184,7 @@ final class Arch_Order {
 	*/
 	public function admin_menu() {
 
-		$this->tools_page = add_submenu_page(
+		$this->arch_page = add_submenu_page(
 			'edit.php?post_type=department',
 			esc_html__( 'Arch Order', 'ao' ),
 			esc_html__( 'Arch Order', 'ao' ),
@@ -202,12 +203,17 @@ final class Arch_Order {
 	*/
 	public function admin_scripts( $hook ) {
 
-		if ( $this->tools_page === $hook ) {
+		if ( $this->arch_page === $hook ) {
 
 			wp_enqueue_script( 'vuejs', $this->js_uri . 'vue.js', array(), '', true );
 			wp_enqueue_script( 'vue-router', $this->js_uri . 'vue-router.js', array(), '', true );
 			wp_enqueue_script( 'axios', $this->js_uri . 'axios.min.js', array(), '', true );
+
+			wp_enqueue_script( 'object-fit', $this->js_uri . 'objectFitPolyfill.basic.min.js', array(), '', true );
+
 			wp_enqueue_script( 'main', $this->js_uri . 'main.js', array(), '', true );
+
+			wp_enqueue_style( 'arch-style', $this->css_uri . 'ao-admin.css', false, false );
 		}
 	}
 
@@ -246,13 +252,27 @@ final class Arch_Order {
 
 
 
-		<div id="app">
-			<h1>Latest Vue.js Commits</h1>
-			<template v-for="post in posts">
-				<div class="post-content">
-					<h2>{{post.title.rendered}}</h2>
-				</div>
-			</template>
+		<div id="app" class="wrap">
+			<h1>Post Table</h1>
+			<div id="app" class="o-grid p-minus">
+				<template v-for="post in posts">
+					<div class="postbox c-card o-cell u-flex u-flex-col h6">
+						<div v-if="post.thumb_med" class="card-image-wrap">
+						<img v-bind:src="post.thumb_med" data-object-fit class="card-image u-1of1">
+						</div>
+					    <div class="card-block u-1of1">
+					      <h2 class="card-title h6 m-0 p-3">{{post.title.rendered}}</h2>
+					      <div v-if="!post.thumb_med" class="card-text u-lh-base p-minus mb-1 px-3">{{post.excerpt.rendered}}</div>
+					    </div>
+					    <div class="card-footer u-1of1 mt-auto p-minus">
+					      <div class="post-author mb-1">{{post.author}}</div>
+						  <div class="post-date mb-1">{{post.date}}</div>
+						  <div v-for="category in post.cats" class="post-cat badge mb-1 p-minus">{{category.name}}</div>
+					    </div>
+					</div>
+				</template>
+			</div>
+			<pre>{{ $data }}</pre>
 		</div>
 
 		<?php }
