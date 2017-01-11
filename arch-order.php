@@ -209,7 +209,7 @@ final class Arch_Order {
 			wp_enqueue_script( 'vue-router', $this->js_uri . 'vue-router.js', array(), '', true );
 			wp_enqueue_script( 'axios', $this->js_uri . 'axios.min.js', array(), '', true );
 
-			wp_enqueue_script( 'object-fit', $this->js_uri . 'objectFitPolyfill.basic.min.js', array(), '', true );
+			// wp_enqueue_script( 'object-fit', $this->js_uri . 'objectFitPolyfill.basic.min.js', array(), '', true );
 
 			wp_enqueue_script( 'main', $this->js_uri . 'main.js', array(), '', true );
 
@@ -257,16 +257,16 @@ final class Arch_Order {
 			<div id="app" class="o-grid p-minus">
 				<template v-for="post in posts">
 					<div class="postbox c-card o-cell u-flex u-flex-col h6">
-						<div v-if="post.thumb_med" class="card-image-wrap">
-						<img v-bind:src="post.thumb_med" data-object-fit class="card-image u-1of1">
+						<div v-if="post.thumb_url" class="card-image-wrap">
+						<img v-bind:src="post.thumb_url" class="card-image u-1of1">
 						</div>
-					    <div class="card-block u-1of1">
-					      <h2 class="card-title h6 m-0 p-3">{{post.title.rendered}}</h2>
-					      <div v-if="!post.thumb_med" class="card-text u-lh-base p-minus mb-1 px-3">{{post.excerpt.rendered}}</div>
+					    <div class="card-block mt-auto u-1of1">
+							<h2 class="card-title h6 m-0 p-3">{{post.title.rendered}}</h2>
 					    </div>
-					    <div class="card-footer u-1of1 mt-auto p-minus">
-					      <div class="post-author mb-1">{{post.author}}</div>
-						  <div class="post-date mb-1">{{post.date}}</div>
+					    <div class="card-footer u-1of1 p-minus">
+					      <div class="post-author mb-1">{{post.author_name}}</div>
+						  <div class="post-date mb-1">{{post.posted_on}}</div>
+
 						  <div v-for="category in post.cats" class="post-cat badge mb-1 p-minus">{{category.name}}</div>
 					    </div>
 					</div>

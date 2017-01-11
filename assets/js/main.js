@@ -3,8 +3,7 @@ var vm = new Vue({
 	el: '#app',
 
 	data: {
-		posts: [],
-		thumb_med: null
+		posts: []
 	},
 
 	mounted: function() {
@@ -24,7 +23,7 @@ var vm = new Vue({
 	methods: {
 		fetchPosts: function() {
 			var self = this
-			axios.get('/wp-json/wp/v2/posts?per_page=20')
+			axios.get('/wp-json/wp/v2/posts')
 				.then(function(response) {
 					vm.posts = response.data
 				})
