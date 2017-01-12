@@ -2,97 +2,126 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Liberation Sans", "Helvetica Neue", sans-serif;
 }
 
+#app {
+	margin-right: 0;
+}
+
 .arch-wrap {
+	width: 100%;
     max-width: 100%;
     overflow: hidden;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.arch-wrap * {
+	position: relative;
+	box-sizing: inherit;
+}
+
+.arch-wrap h1 {
+    margin-bottom: 1rem;
 }
 
 .o-grid {
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: auto;
-	margin-left: auto;
-	box-sizing: border-box;
-}
-
-.o-grid * {
-	box-sizing: inherit;
-	position: relative;
+	margin-right: -1rem;
+	margin-left: -1rem;
 }
 
 .o-cell {
-	margin: 0 0.75rem 1.5rem;
-	flex: 1;
-	min-height: 64px;
+	margin: 0 1rem 2rem;
+	flex: 1 1 auto;
 }
 
 .c-card {
+	margin: 0 1rem 2rem;
+	flex: 1 1 auto;
+	min-height: 64px;
 	width: 100%;
 	max-width: 100%;
+	background-color: #fff;
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    border: 1px solid #e5e5e5;
+	overflow: hidden;
 }
 
-.card-image-wrap {
+/*.card-block {
 	width: 100%;
-	max-height: 200px;
-	min-height: 120px;
-	height: 12vw;
-    overflow: hidden;
-	margin-bottom: -70px;
-	position: relative;
-}
-
-/*.card-image {
-	object-fit: cover;
+    max-width: calc(100% - 1rem);
 }*/
 
-.card-image-wrap + .card-block {
+.card-image-wrap {
+	width: 90px;
+	/*max-width: 90px;
+	min-width: 60px;*/
+	height: 90px;
+    overflow: hidden;
+	flex-shrink: 0;
+}
+
+@media only screen and (max-width: 400px) {
+	.card-image-wrap {
+		display: none;
+	}
+}
+.card-image {
+	width: 100%;
+	height: auto;
+}
+
+.card-body {
+    max-width: 100%;
+	overflow: hidden;
+	justify-content: space-between;
+	height: 90px;
+}
+
+/*.card-image-wrap + .card-block {
+	height: 3rem;
 	background: linear-gradient(transparent, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.9));
-}
+}*/
 
-.card-image-wrap + .card-block > * {
+/*.card-image-wrap + .card-block > * {
     color: #fff;
+}*/
+
+.card-title {
+	display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1rem;
+    line-height: 1.5;
+	margin: 0 0 auto;
+}
+
+.card-title:after {
+	display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 2.5rem;
+    content: "";
+    background: linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1));
 }
 
 @media only screen and (min-width: 800px) {
-	.c-card {
-		-webkit-flex: 0 0 calc(50% - 1.5rem);
-		-ms-flex: 0 0 calc(50% - 1.5rem);
-		flex: 0 0 calc(50% - 1.5rem);
-		max-width: calc(50% - 1.5rem);
-	}
-}
-
-@media only screen and (min-width: 800px) {
-	.c-card {
-		-webkit-flex: 0 0 calc(33.33% - 1.5rem);
-		-ms-flex: 0 0 calc(33.33% - 1.5rem);
-		flex: 0 0 calc(33.33% - 1.5rem);
-		max-width: calc(33.33% - 1.5rem);
-	}
-}
-
-@media only screen and (min-width: 1500px) {
-	.c-card {
-		-webkit-flex: 0 0 calc(25% - 1.5rem);
-		-ms-flex: 0 0 calc(25% - 1.5rem);
-		flex: 0 0 calc(25% - 1.5rem);
-		max-width: calc(25% - 1.5rem);
-	}
-}
-
-@media only screen and (min-width: 1800px) {
-	.c-card {
-		-webkit-flex: 0 0 calc(20% - 1.5rem);
-		-ms-flex: 0 0 calc(20% - 1.5rem);
-		flex: 0 0 calc(20% - 1.5rem);
-		max-width: calc(20% - 1.5rem);
+	.u-1of2-md {
+		-webkit-flex: 0 0 calc(50% - 2rem);
+		-ms-flex: 0 0 calc(50% - 2rem);
+		flex: 0 0 calc(50% - 2rem);
+		width: calc(50% - 2rem);
 	}
 }
 
 .card-footer {
 	padding: .75rem;
-    border-top: 1px solid #eee;
-    background: #fcfcfc;
+	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
+    background: #fafafa;
 }
 
 .badge {
@@ -157,6 +186,10 @@ body {
 
 .u-bold {
 	font-weight: 600;
+}
+
+.u-text-sub {
+	color: #72777c;
 }
 
 .u-systems-text {
@@ -324,11 +357,29 @@ body {
 	max-width: calc(50% - 1.5rem);
 }
 
+@media only screen and (min-width: 800px) {
+	.u-1of2-md {
+		-webkit-flex: 0 0 calc(50% - 2rem);
+		-ms-flex: 0 0 calc(50% - 2rem);
+		flex: 0 0 calc(50% - 2rem);
+		width: calc(50% - 2rem);
+	}
+}
+
 .u-1of3 {
-	-webkit-flex: 0 0 calc(33.33% - 1.5rem);
-	-ms-flex: 0 0 calc(33.33% - 1.5rem);
-	flex: 0 0 calc(33.33% - 1.5rem);
-	max-width: calc(33.33% - 1.5rem);
+	-webkit-flex: 0 0 calc(33.33% - 2rem);
+	-ms-flex: 0 0 calc(33.33% - 2rem);
+	flex: 0 0 calc(33.33% - 2rem);
+	max-width: calc(33.33% - 2rem);
+}
+
+@media only screen and (min-width: 1500px) {
+	.u-1of3-lg {
+		-webkit-flex: 0 0 calc(33.33% - 2rem);
+		-ms-flex: 0 0 calc(33.33% - 2rem);
+		flex: 0 0 calc(33.33% - 2rem);
+		max-width: calc(33.33% - 2rem);
+	}
 }
 
 .u-2of3 {

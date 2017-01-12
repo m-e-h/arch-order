@@ -88,5 +88,5 @@ function ao_get_cats() {
 }
 
 function ao_get_thumb_url() {
-	return get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+	return get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
 }

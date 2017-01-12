@@ -252,22 +252,30 @@ final class Arch_Order {
 
 
 
-		<div id="app" class="arch-wrap">
+		<div id="app" class="wrap arch-wrap">
 			<h1>Post Table</h1>
 			<div id="app" class="o-grid p-minus">
+				<div class="c-card o-cell u-1of1">
+					Hello
+				</div>
 				<template v-for="post in posts">
-					<div class="postbox c-card o-cell u-flex u-flex-col h6">
-						<div v-if="post.thumb_url" class="card-image-wrap">
-						<img v-bind:src="post.thumb_url" class="card-image u-1of1">
-						</div>
-					    <div class="card-block mt-auto u-1of1">
-							<h2 class="card-title h6 m-0 p-3">{{post.title.rendered}}</h2>
-					    </div>
-					    <div class="card-footer u-1of1 p-minus">
-					      <div class="post-author mb-1">{{post.author_name}}</div>
-						  <div class="post-date mb-1">{{post.posted_on}}</div>
+					<div class="c-card u-1of2-md u-1of3-lg u-flex u-flex-wrap h6">
+					    <div class="card-block u-1of1 u-flex">
+							<div v-if="post.thumb_url" class="card-image-wrap">
+							<img v-bind:src="post.thumb_url" class="card-image u-1of1">
+							</div>
+							<div class="card-body u-1of1 u-flex u-flex-wrap px-3 py-2">
+							<h2 class="card-title u-1of1 h6">{{post.title.rendered}}</h2>
 
-						  <div v-for="category in post.cats" class="post-cat badge mb-1 p-minus">{{category.name}}</div>
+							<div class="post-author u-flexed-end u-bold u-text-sub p-minus">{{post.author_name}}</div>
+  						  <div class="post-date u-flexed-end u-text-sub p-minus">{{post.posted_on}}</div>
+							</div>
+					    </div>
+					    <div class="card-footer u-1of1 u-flexed-end p-minus u-flex u-flex-wrap u-flex-jb">
+							<div class="card-actions">
+								<a class="edit" href="#">Edit</a> | <a class="editinline" href="#">Quick Edit</a> | <a class="trash" href="#">Trash</a> | <a class="view" href="#">View</a>
+							</div>
+						  <div v-for="category in post.cats" class="post-cat badge p-minus">{{category.name}}</div>
 					    </div>
 					</div>
 				</template>
